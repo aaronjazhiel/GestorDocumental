@@ -1,0 +1,25 @@
+apply plugin: 'java'
+
+ dependencies {
+ 
+          compile project(':ivr-lib')
+          compile 'javax.validation:validation-api:1.1.0.Final'
+		
+		   /*compile 'org.apache.commons:commons-lang3:3.4'
+		   compile 'javassist:javassist:3.12.1.GA'
+		   compile 'org.aspectj:aspectjweaver:1.7.4'
+		   compile 'asm:asm:2.2.2'
+		   compile 'cglib:cglib:3.1'
+		   compile 'log4j:log4j:1.2.17'
+		   compile 'org.hibernate:hibernate-entitymanager:4.3.11.Final'
+		   compile 'org.hibernate:hibernate-core:4.3.11.Final'
+		   compile 'org.springframework:spring-core:3.2.11.RELEASE'
+		   compile 'org.springframework:spring-context:3.2.11.RELEASE'
+		   compile 'org.springframework:spring-tx:3.2.11.RELEASE'
+		   compile 'org.springframework:spring-orm:3.2.11.RELEASE'
+		   compile 'org.springframework:spring-beans:3.2.11.RELEASE'
+		   compile 'org.springframework:spring-test:3.2.11.RELEASE'
+		   compile 'hsqldb:hsqldb:1.8.0.7'
+           testCompile 'junit:junit:4.12'*/
+
+  }

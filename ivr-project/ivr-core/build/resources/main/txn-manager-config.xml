@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="
+	   http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+       http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+	<context:component-scan base-package="com.mx.bancomer.biva.negocio.bo">
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Repository" /> 
+	</context:component-scan>
+	
+
+	<aop:config>
+		<aop:advisor advice-ref="txmsmAdvice" 
+			pointcut="execution(public * com.mx.bancomer.biva.negocio.bo.impl..*ServiceImpl(..))" />
+	</aop:config>
+
+	<!-- Definicion de Servicio de Transaaccionalidad -->
+	<tx:advice id="txmsmAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="get*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="find*" propagation="SUPPORTS" read-only="true" />
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="RuntimeException" />
+			<tx:method name="save*" propagation="REQUIRED"
+				rollback-for="RuntimeException" />
+			<tx:method name="create*" propagation="REQUIRED"
+				rollback-for="RuntimeException" />
+			<tx:method name="update*" propagation="REQUIRED"
+				rollback-for="RuntimeException" />
+			<tx:method name="delete*" propagation="REQUIRED"
+				rollback-for="RuntimeException" />
+			<tx:method name="*" propagation="SUPPORTS" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
+
+</beans>
